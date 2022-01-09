@@ -1,0 +1,18 @@
+.report-single h4 {
+    font-size: 13px;
+    margin-bottom: 3px;
+}
+.report-single h4 span {
+    font-weight: 400;
+}
+.report-single h4.notes span {
+    color: #37d14f;
+    font-weight: 400;
+}
+ul.points li {
+    font-size: 13px;
+    font-weight: 400;
+}
+.card.single-details {
+    background: #f8f8f8;
+}
