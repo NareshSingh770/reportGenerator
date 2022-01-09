@@ -10,26 +10,27 @@ const projectHtml = (id) => {
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Project Name</label>
-                                    <input type="text" class="form-control project-name" name='project'>
+                                    <input type="text" placeholder='Project Name' class="form-control project-name" name='project'>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Attachments</label>
-                                    <input type="text" class="form-control attachement" name='attachment'>
+                                    <input type="text" placeholder='Attachments' class="form-control attachement" name='attachment'>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Task ID</label>
-                                    <input type="number" class="form-control task-id" name='task'>
+                                    <input type="number" placeholder='Task ID' class="form-control task-id" name='task'>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Time Spent</label>
-                                    <input type="number" class="form-control time-dur" name='time'>
+                                    <input type="number" placeholder='Time Spent' class="form-control time-dur" name='time'>
+                                </div>
+                            </div>
+                            <div class='col-md-12'>
+                                <div class='form-group'>
+                                    <textarea class='form-control points' rows='5' placeholder='description...'></textarea>
                                 </div>
                             </div>
                             
@@ -48,23 +49,19 @@ const generateBtn = `
 `
 
 
-const singleReportHTML = (projectName, attach, taskId, timeDur) => {
+const singleReportHTML = (projectName, attach, taskId, timeDu, points) => {
     return `
                 <div class="report-single mt-5">
                     <h4>Project Name: <span>${projectName}</span></h4>
                     <h4>Attachments: <span>${attach}</span></h4>
                     <h4>Task ID: <span>${taskId}</span></h4>
-                    <h4>Time Spent: <span>${timeDur} hours</span></h4>
+                    <h4>Time Spent: <span>${timeDu} hours</span></h4>
                     <h4 class="notes">Attachment Notes: <span>Worked on to create new layout design.</span></h4>
                     <ul class="points">
-                        <li>Coordinate with the development team to understand the modification of the UI design.</li>
-                        <li>Coordinate with the development team to understand the modification of the UI design.</li>
-                        <li>Coordinate with the development team to understand the modification of the UI design.</li>
-                        <li>Coordinate with the development team to understand the modification of the UI design.</li>
-                        <li>Coordinate with the development team to understand the modification of the UI design.</li>
-                        <li>Coordinate with the development team to understand the modification of the UI design.</li>
-                        <li>Coordinate with the development team to understand the modification of the UI design.</li>
-                    </ul>
-                </div>
+                        ${points.map(val => {
+        return `<li contenteditable="true">${val}</li>`
+    }).join('')}
+                    </ul >
+                </div >
     `
 }

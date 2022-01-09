@@ -2,11 +2,12 @@ const numProjects = document.getElementById('num-report');
 const reportDiv = document.getElementById('report-details');
 
 
-function Report(a, b, c, d) {
+function Report(a, b, c, d, e) {
     this.projectName = a
     this.attach = b
     this.taskId = c
     this.timeDur = d
+    this.points = e
 }
 
 const data = []
@@ -22,8 +23,15 @@ const generateReport = (e) => {
         const attach = elem.querySelector('.attachement').value;
         const taskId = elem.querySelector('.task-id').value;
         const timeDur = elem.querySelector('.time-dur').value;
+        const pointsAll = elem.querySelector('.points').value;
 
-        const singleRep = new Report(projectName, attach, taskId, timeDur)
+        const points = pointsAll.split('.\n')
+
+        console.log(points)
+
+
+
+        const singleRep = new Report(projectName, attach, taskId, timeDur, points)
         data.push(singleRep);
     })
 
@@ -32,9 +40,9 @@ const generateReport = (e) => {
 
     data.forEach(val => {
 
-        const { projectName, attach, taskId, timeDur } = val;
+        const { projectName, attach, taskId, timeDur, points } = val;
 
-        const reportLayout = singleReportHTML(projectName, attach, taskId, timeDur)
+        const reportLayout = singleReportHTML(projectName, attach, taskId, timeDur, points)
 
         console.log(reportLayout)
 
