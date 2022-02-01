@@ -13,6 +13,11 @@ ul.points li {
     font-size: 13px;
     font-weight: 400;
 }
+ul.points li:focus {
+    outline: 2px solid #13b300;
+    padding: 2px 8px;
+    background: #fcfcfc;
+}
 .card.single-details {
     background: #f8f8f8;
 }

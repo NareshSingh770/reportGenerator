@@ -1,5 +1,6 @@
 const numProjects = document.getElementById('num-report');
 const reportDiv = document.getElementById('report-details');
+const generatedRep = document.querySelector('.generated-report')
 
 
 function Report(a, b, c, d, e) {
@@ -15,7 +16,7 @@ const data = []
 
 const deleteAll = (e) => {
     reportDiv.innerHTML = ''
-    document.querySelector('.generated-report').innerHTML = ''
+    generatedRep.innerHTML = ''
     e.target.setAttribute('disabled', true)
 }
 
@@ -42,10 +43,10 @@ const createReport = (e) => {
 
                 reportDiv.insertAdjacentHTML('beforeend', generateBtn)
                 reportDiv.addEventListener('submit', generateReport)
-
+                delBtn.removeAttribute('disabled');
+                delBtn.addEventListener('click', deleteAll);
             }
-            delBtn.removeAttribute('disabled');
-            delBtn.addEventListener('click', deleteAll);
+
         }
 
 
@@ -56,43 +57,61 @@ numProjects.addEventListener('keyup', createReport);
 document.getElementById('create').addEventListener('click', createReport)
 
 
-const generateReport = (e) => {
 
-    e.preventDefault();
-    const cardWrapper = document.querySelectorAll('.single-details')
+const editPoint = () => {
+    const points = document.querySelectorAll('ul.points li');
 
-    cardWrapper.forEach(elem => {
-        const projectName = elem.querySelector('.project-name').value;
-        const attach = elem.querySelector('.attachement').value;
-        const taskId = elem.querySelector('.task-id').value;
-        const timeDur = elem.querySelector('.time-dur').value;
-        const pointsAll = elem.querySelector('.points').value;
-
-        const points = pointsAll.split('\n')
-
-        console.log(points)
-
-
-
-        const singleRep = new Report(projectName, attach, taskId, timeDur, points)
-        data.push(singleRep);
+    points.forEach(val => {
+        val.setAttribute('contenteditable', true)
     })
-
-
-    console.log(data)
-
-    data.forEach(val => {
-
-        const { projectName, attach, taskId, timeDur, points } = val;
-
-        const reportLayout = singleReportHTML(projectName, attach, taskId, timeDur, points)
-
-        console.log(reportLayout)
-
-        document.querySelector('.generated-report').insertAdjacentHTML('beforeend', reportLayout)
-
-    })
-
 }
 
 
+const generateReport = (e) => {
+
+    e.preventDefault();
+
+    if (!generatedRep.innerText) {
+        const cardWrapper = document.querySelectorAll('.single-details')
+
+        cardWrapper.forEach(elem => {
+            const projectName = elem.querySelector('.project-name').value;
+            const attach = elem.querySelector('.attachement').value;
+            const taskId = elem.querySelector('.task-id').value;
+            const timeDur = elem.querySelector('.time-dur').value;
+            const pointsAll = elem.querySelector('.points').value;
+
+            const points = pointsAll.split('\n')
+
+            console.log(points)
+
+            const singleRep = new Report(projectName, attach, taskId, timeDur, points)
+            data.push(singleRep);
+        })
+
+
+        console.log(data)
+
+
+
+
+        data.forEach(val => {
+
+            const { projectName, attach, taskId, timeDur, points } = val;
+
+            const reportLayout = singleReportHTML(projectName, attach, taskId, timeDur, points)
+
+            console.log(reportLayout)
+
+            generatedRep.insertAdjacentHTML('beforeend', reportLayout)
+
+        })
+
+        generatedRep.insertAdjacentHTML('afterbegin', editBtn)
+
+        document.querySelector('.edit').addEventListener('click', editPoint)
+        // document.querySelector('.copy').addEventListener('click', copyRepClipboard)
+
+    }
+
+}

@@ -44,11 +44,18 @@ const projectHtml = (series) => {
 const generateBtn = `
 <div class='col-12 text-right mt-4 mb-5'>
 
-    <button type='submit' class='btn btn-primary generate'>Generate Report</button>
+    <button type='submit' class='btn btn-success generate'>Generate Report</button>
 
-</div>
+</div>`
 
-`
+const editBtn = `
+<div class='col-12 text-right mt-4 mb-5'>
+
+    <button class='btn btn-primary edit'>Edit</button>
+
+</div>`
+
+
 
 
 const singleReportHTML = (projectName, attach, taskId, timeDu, points) => {
@@ -61,7 +68,7 @@ const singleReportHTML = (projectName, attach, taskId, timeDu, points) => {
                     <h4 class="notes">Attachment Notes: <span>Worked on to create new layout design.</span></h4>
                     <ul class="points">
                         ${points.map(val => {
-        return `<li contenteditable="true">${val}</li>`
+        return `<li>${val}</li>`
     }).join('')}
                     </ul >
                 </div >
