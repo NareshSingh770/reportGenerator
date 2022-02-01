@@ -1,11 +1,11 @@
-const projectHtml = (id) => {
+const projectHtml = (series) => {
     return `
                 <div class='col-md-4'>
                     <div class="card single-details p-2">
                        <div class='row' autocomplete='on'>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <h4>Enter Projects Details #${id}</h4>
+                                    <h4>Enter Projects Details #${series}</h4>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -38,6 +38,8 @@ const projectHtml = (id) => {
                     </div>  
                 </div>
 `}
+
+
 
 const generateBtn = `
 <div class='col-12 text-right mt-4 mb-5'>
